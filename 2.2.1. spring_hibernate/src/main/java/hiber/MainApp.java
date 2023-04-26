@@ -21,9 +21,12 @@ public class MainApp {
         for (Car car : cars) {
             System.out.println(car.toString());
         }
-        System.out.println("\nЧтобы узнать владельца машины, введите id соответствующей записи: ");
-        int result_id = sc.nextInt();
-        List<User> result_user = userService.userCar(result_id);
+        System.out.println("\nЧтобы узнать владельца, введите модель и серию машины");
+        System.out.println("Сначала введите модель машины: ");
+        String model = sc.nextLine();
+        System.out.println("Теперь введите серию машины: ");
+        int series = sc.nextInt();
+        List<User> result_user = userService.userCar(model, series);
         for (User user : result_user) {
             System.out.println("Владелец машины: " + user.toString());
         }
