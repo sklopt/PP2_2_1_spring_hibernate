@@ -39,10 +39,11 @@ public class UserDaoImp implements UserDao {
     }
 
     @Override
-    public List<User> userCar(int result_id) {
+    public List<User> userCar(String model, int series) {
         return sessionFactory.getCurrentSession()
-                .createNativeQuery("select * from users where cars_id = :param", User.class)
-                .setParameter("param", result_id)
+                .createNativeQuery("SELECT * FROM users JOIN cars c on users.cars_id = c.id WHERE model = :param AND series = :param2", User.class)
+                .setParameter("param", model)
+                .setParameter("param2", series)
                 .getResultList();
     }
 }
